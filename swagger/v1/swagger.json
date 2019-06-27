@@ -41,10 +41,54 @@
         ],
         "responses": {
           "200": {
-            "description": "user registered"
+            "description": "user registered",
+            "examples": {
+              "application/json": {
+                "status": "success",
+                "data": {
+                  "id": 1,
+                  "provider": "email",
+                  "uid": "jamaal@mante.info",
+                  "allow_password_change": false,
+                  "email": "jamaal@mante.info",
+                  "created_at": "2019-06-27T13:52:59.469Z",
+                  "updated_at": "2019-06-27T13:52:59.526Z",
+                  "role": "user"
+                }
+              }
+            }
           },
           "422": {
-            "description": "invalid request"
+            "description": "invalid request",
+            "examples": {
+              "application/json": {
+                "status": "error",
+                "data": {
+                  "id": null,
+                  "provider": "email",
+                  "uid": "",
+                  "allow_password_change": false,
+                  "email": "email",
+                  "created_at": null,
+                  "updated_at": null,
+                  "role": "user"
+                },
+                "errors": {
+                  "password": [
+                    "can't be blank"
+                  ],
+                  "email": [
+                    "is not an email",
+                    "is invalid"
+                  ],
+                  "full_messages": [
+                    "Password can't be blank",
+                    "Email is not an email",
+                    "Email is invalid"
+                  ]
+                }
+              }
+            }
           }
         }
       }
@@ -81,10 +125,30 @@
         ],
         "responses": {
           "200": {
-            "description": "session created"
+            "description": "session created",
+            "examples": {
+              "application/json": {
+                "data": {
+                  "id": 2,
+                  "email": "test@gmail.com",
+                  "provider": "email",
+                  "uid": "test@gmail.com",
+                  "allow_password_change": false,
+                  "role": "user"
+                }
+              }
+            }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "unauthorized",
+            "examples": {
+              "application/json": {
+                "success": false,
+                "errors": [
+                  "Invalid login credentials. Please try again."
+                ]
+              }
+            }
           }
         }
       }
