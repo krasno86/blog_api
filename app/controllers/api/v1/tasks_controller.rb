@@ -14,7 +14,7 @@ module Api::V1
     end
 
     def show
-      render json: serialized_object(@task), status: 200
+      render json: TaskSerializer.new(@task).serialized_json, status: 200
     end
 
     def create
@@ -49,7 +49,8 @@ module Api::V1
     end
 
     def set_task
-      @task = Task.find(params[:id])
+      @task = @current_user.tasks.find_by(id: params[:id])
+      head(:not_found) if @task.nil?
     end
   end
 end

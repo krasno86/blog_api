@@ -48,11 +48,11 @@
                 "data": {
                   "id": 1,
                   "provider": "email",
-                  "uid": "jamaal@mante.info",
+                  "uid": "merleschmidt@ruelhyatt.biz",
                   "allow_password_change": false,
-                  "email": "jamaal@mante.info",
-                  "created_at": "2019-06-27T13:52:59.469Z",
-                  "updated_at": "2019-06-27T13:52:59.526Z",
+                  "email": "merleschmidt@ruelhyatt.biz",
+                  "created_at": "2019-06-27T15:03:22.707Z",
+                  "updated_at": "2019-06-27T15:03:22.764Z",
                   "role": "user"
                 }
               }
@@ -87,6 +87,26 @@
                     "Email is invalid"
                   ]
                 }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "deleting session",
+        "tags": [
+          "Session"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "session deleted",
+            "examples": {
+              "application/json": {
+                "status": "success",
+                "message": "Account with UID 'test@gmail.com' has been destroyed."
               }
             }
           }
@@ -129,7 +149,7 @@
             "examples": {
               "application/json": {
                 "data": {
-                  "id": 2,
+                  "id": 3,
                   "email": "test@gmail.com",
                   "provider": "email",
                   "uid": "test@gmail.com",
@@ -152,6 +172,229 @@
           }
         }
       }
+    },
+    "/auth/sign_out": {
+      "delete": {
+        "summary": "deleting session",
+        "tags": [
+          "Session"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "session deleted",
+            "examples": {
+              "application/json": {
+                "success": true
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/tasks": {
+      "post": {
+        "summary": "Creates a new task",
+        "tags": [
+          "Tasks"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "task",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "description"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "group created",
+            "examples": {
+              "application/json": {
+                "data": {
+                  "id": "1",
+                  "type": "task",
+                  "attributes": {
+                    "name": "1111",
+                    "description": "rswgwgefwag"
+                  },
+                  "relationships": {
+                    "user": {
+                      "data": {
+                        "id": "5",
+                        "type": "user"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Shows tasks",
+        "tags": [
+          "Tasks"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "group created",
+            "examples": {
+              "application/json": {
+                "data": [
+                  {
+                    "id": "3",
+                    "type": "task",
+                    "attributes": {
+                      "name": "Crait",
+                      "description": "description"
+                    },
+                    "relationships": {
+                      "user": {
+                        "data": {
+                          "id": "6",
+                          "type": "user"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "id": "2",
+                    "type": "task",
+                    "attributes": {
+                      "name": "Naboo",
+                      "description": "description"
+                    },
+                    "relationships": {
+                      "user": {
+                        "data": {
+                          "id": "6",
+                          "type": "user"
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/tasks/{id}": {
+      "get": {
+        "summary": "Show a task",
+        "tags": [
+          "Tasks"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Task founded",
+            "examples": {
+              "application/json": {
+                "data": {
+                  "id": "4",
+                  "type": "task",
+                  "attributes": {
+                    "name": "Geonosis",
+                    "description": "description"
+                  },
+                  "relationships": {
+                    "user": {
+                      "data": {
+                        "id": "7",
+                        "type": "user"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Group not found"
+          }
+        }
+      }
     }
-  }
+  },
+  "securityDefinitions": {
+    "accessToken": {
+      "type": "apiKey",
+      "name": "access-token",
+      "in": "header"
+    },
+    "tokenType": {
+      "type": "apiKey",
+      "name": "token-type",
+      "in": "header"
+    },
+    "client": {
+      "type": "apiKey",
+      "name": "client",
+      "in": "header"
+    },
+    "expiry": {
+      "type": "apiKey",
+      "name": "expiry",
+      "in": "header"
+    },
+    "uid": {
+      "type": "apiKey",
+      "name": "uid",
+      "in": "header"
+    }
+  },
+  "security": [
+    {
+      "accessToken": [
+
+      ],
+      "tokenType": [
+
+      ],
+      "client": [
+
+      ],
+      "expiry": [
+
+      ],
+      "uid": [
+
+      ]
+    }
+  ]
 }
