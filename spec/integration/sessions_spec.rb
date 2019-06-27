@@ -30,4 +30,15 @@ RSpec.describe 'Session' do
       end
     end
   end
+
+  path '/auth/sign_out' do
+    delete 'deleting session' do
+      tags 'Session'
+      consumes 'application/json'
+      let(:signed_in_user) { create(:user) }
+      response '200', 'session deleted' do
+        run_test!
+      end
+    end
+  end
 end
