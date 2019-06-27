@@ -9,7 +9,8 @@ module Api::V1
     before_action :set_task, only: [:show, :update, :destroy]
 
     def index
-      @tasks = @current_user.tasks.all.order("created_at DESC")
+      @tasks = @current_user.tasks.all.order('created_at DESC')
+      head(:not_found) if @tasks.nil?
       render json: TaskSerializer.new(@tasks).serialized_json, status: 200
     end
 
@@ -35,6 +36,7 @@ module Api::V1
     end
 
     def destroy
+      authorize @task
       if @task.destroy
         head :no_content, status: :ok
       else

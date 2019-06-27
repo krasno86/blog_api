@@ -19,7 +19,7 @@ RSpec.describe 'Tasks' do
       let(:signed_in_user) { create :user}
 
       response '201', 'group created' do
-        let(:task)          { { name: '1111', description: 'rswgwgefwag' } }
+        let(:task) { { name: '1111', description: 'rswgwgefwag' } }
 
         run_test!
       end
@@ -54,8 +54,51 @@ RSpec.describe 'Tasks' do
         run_test!
       end
 
-      response '404', 'Group not found' do
+      response '404', 'Task not found' do
         let(:id) { 'invalid' }
+        run_test!
+      end
+    end
+  end
+
+  path '/api/v1/tasks/{id}' do
+    let(:signed_in_user) { create :user }
+    let(:task)           { create :task, user: signed_in_user }
+
+    delete 'Delete a task' do
+      tags 'Tasks'
+      consumes 'application/json'
+      parameter name: :id, in: :path, type: :string
+
+      response '204', 'Task destroyed' do
+        let(:id) { task.id }
+        run_test!
+      end
+    end
+  end
+
+  path '/api/v1/tasks/{id}' do
+    let(:signed_in_user) { create :user }
+    let(:task)           { create :task, user: signed_in_user }
+
+    put 'Update a task' do
+      tags 'Tasks'
+      consumes 'application/json'
+      parameter name: :id, in: :path, type: :string
+      parameter name: :task, in: :body, schema: {
+          type: :object,
+          properties: {
+              name: { type: :string },
+              description: { type: :string }
+          }
+      }
+
+      let(:signed_in_user) { create :user}
+
+      response '200', 'group created' do
+        let(:id) { task.id }
+        let(:task2) { { name: '1111', description: 'rswgwgefwag' } }
+
         run_test!
       end
     end

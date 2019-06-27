@@ -48,11 +48,11 @@
                 "data": {
                   "id": 1,
                   "provider": "email",
-                  "uid": "merleschmidt@ruelhyatt.biz",
+                  "uid": "kerakunze@reichel.biz",
                   "allow_password_change": false,
-                  "email": "merleschmidt@ruelhyatt.biz",
-                  "created_at": "2019-06-27T15:03:22.707Z",
-                  "updated_at": "2019-06-27T15:03:22.764Z",
+                  "email": "kerakunze@reichel.biz",
+                  "created_at": "2019-06-27T20:56:20.595Z",
+                  "updated_at": "2019-06-27T20:56:20.659Z",
                   "role": "user"
                 }
               }
@@ -93,16 +93,16 @@
         }
       },
       "delete": {
-        "summary": "deleting session",
+        "summary": "deleting user",
         "tags": [
-          "Session"
+          "Registration"
         ],
         "consumes": [
           "application/json"
         ],
         "responses": {
           "200": {
-            "description": "session deleted",
+            "description": "user deleted",
             "examples": {
               "application/json": {
                 "status": "success",
@@ -268,7 +268,7 @@
                     "id": "3",
                     "type": "task",
                     "attributes": {
-                      "name": "Crait",
+                      "name": "Bespin",
                       "description": "description"
                     },
                     "relationships": {
@@ -284,7 +284,7 @@
                     "id": "2",
                     "type": "task",
                     "attributes": {
-                      "name": "Naboo",
+                      "name": "Cloud City",
                       "description": "description"
                     },
                     "relationships": {
@@ -329,7 +329,7 @@
                   "id": "4",
                   "type": "task",
                   "attributes": {
-                    "name": "Geonosis",
+                    "name": "Jedha",
                     "description": "description"
                   },
                   "relationships": {
@@ -345,7 +345,86 @@
             }
           },
           "404": {
-            "description": "Group not found"
+            "description": "Task not found"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a task",
+        "tags": [
+          "Tasks"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Task destroyed"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a task",
+        "tags": [
+          "Tasks"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "task",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "group created",
+            "examples": {
+              "application/json": {
+                "data": {
+                  "id": "6",
+                  "type": "task",
+                  "attributes": {
+                    "name": "Hosnian Prime",
+                    "description": "description"
+                  },
+                  "relationships": {
+                    "user": {
+                      "data": {
+                        "id": "10",
+                        "type": "user"
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
