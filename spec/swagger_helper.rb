@@ -9,7 +9,37 @@ RSpec.configure do |config|
         title: 'API V1',
         version: 'v1'
       },
-      paths: {}
+      paths: {},
+      securityDefinitions: {
+          accessToken: {
+              type: :apiKey,
+              name: "access-token",
+              in: :header
+          },
+          tokenType: {
+              type: :apiKey,
+              name: "token-type",
+              in: :header
+          },
+          client: {
+              type: :apiKey,
+              name: "client",
+              in: :header
+          },
+          expiry: {
+              type: :apiKey,
+              name: "expiry",
+              in: :header
+          },
+          uid: {
+              type: :apiKey,
+              name: "uid",
+              in: :header
+          }
+      },
+      security: [
+          { accessToken: [], tokenType: [], client: [], expiry: [], uid: [] },
+      ],
     }
   }
 
@@ -19,5 +49,5 @@ RSpec.configure do |config|
     end
   end
 
-  # config.include_context 'token auth'
+  config.include_context 'token auth'
 end
