@@ -2,10 +2,10 @@ require 'rails_helper'
 
 RSpec.describe 'sign_in and sign_out', type: :request do
   let(:user) { create(:user) }
-  describe 'GET /api/v1/projects' do
+  describe 'get new session' do
     context 'invalid username' do
       before {
-        post '/auth/sign_in',
+        post '/api/v1/auth/sign_in',
              params: {
                  email: 'test@example.com',
                  password: user.password,
@@ -17,7 +17,7 @@ RSpec.describe 'sign_in and sign_out', type: :request do
 
     context 'sign_in' do
       before {
-        post '/auth/sign_in',
+        post '/api/v1/auth/sign_in',
              params: {
                  email: user.email,
                  password: '12345678'

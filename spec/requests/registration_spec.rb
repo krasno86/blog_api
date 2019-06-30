@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'sign_up ', type: :request do
   let(:user) { create(:user) }
 
-  describe 'GET /auth' do
+  describe 'GET api/v1/auth' do
     context 'ivalid password lenght' do
       before {
         post '/auth',
@@ -19,7 +19,7 @@ RSpec.describe 'sign_up ', type: :request do
 
     context 'with valid params' do
       before {
-        post '/auth',
+        post 'api/v1/auth',
              params: {
                  email: 'test@example.com',
                  password: '12345678',

@@ -4,7 +4,7 @@ require 'swagger_helper'
 
 RSpec.describe 'User registration' do
 
-  path '/auth' do
+  path '/api/v1/auth' do
     post 'Creates a new user' do
       tags 'Registration'
       consumes 'application/json'
@@ -34,7 +34,7 @@ RSpec.describe 'User registration' do
     end
   end
 
-  path '/auth' do
+  path '/api/v1/auth' do
     delete 'deleting user' do
       tags 'Registration'
       consumes 'application/json'
