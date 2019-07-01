@@ -36,7 +36,6 @@ class Api::V1::TasksController < Api::V1::ApplicationController
   end
 
   def destroy
-    #authorize @task
     if @task.destroy
       head :no_content, status: :ok
     else

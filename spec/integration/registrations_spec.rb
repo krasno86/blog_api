@@ -34,15 +34,15 @@ RSpec.describe 'User registration' do
     end
   end
 
-  path '/api/v1/auth' do
-    delete 'deleting user' do
-      tags 'Registration'
-      consumes 'application/json'
-      
-      let(:signed_in_user) { create(:user) }
-      response '200', 'user deleted' do
-        run_test!
-      end
-    end
-  end
+  # path '/api/v1/auth' do
+  #   delete 'deleting user' do
+  #     tags 'Registration'
+  #     consumes 'application/json'
+  #
+  #     let(:signed_in_user) { create(:user) }
+  #     response '200', 'user deleted' do
+  #       run_test!
+  #     end
+  #   end
+  # end
 end

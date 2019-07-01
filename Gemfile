@@ -11,11 +11,8 @@ gem 'pg'
 gem 'puma', '~> 3.7'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'devise_token_auth'
-gem 'devise'
-gem 'omniauth'
 gem 'fast_jsonapi'
 gem 'rswag', '~> 2.0', '>= 2.0.5'
-gem 'pundit'
 gem 'rails_admin', '~> 1.4', '>= 1.4.2'
 
 group :development, :test do

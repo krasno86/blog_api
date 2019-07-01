@@ -6,7 +6,7 @@ RSpec.describe 'sign_up ', type: :request do
   describe 'GET api/v1/auth' do
     context 'ivalid password lenght' do
       before {
-        post '/auth',
+        post '/api/v1/auth',
              params: {
                  email: 'test@example.com',
                  password: 'swgfw',
@@ -19,7 +19,7 @@ RSpec.describe 'sign_up ', type: :request do
 
     context 'with valid params' do
       before {
-        post 'api/v1/auth',
+        post '/api/v1/auth',
              params: {
                  email: 'test@example.com',
                  password: '12345678',
@@ -34,8 +34,8 @@ RSpec.describe 'sign_up ', type: :request do
     end
   end
 
-  context 'registrations#destroy' do
-    before { delete '/auth', headers: user.create_new_auth_token }
-    it { expect(response).to have_http_status 200 }
-  end
+  # context 'registrations#destroy' do
+  #   before { delete '/api/v1/auth', headers: user.create_new_auth_token }
+  #   it { expect(response).to have_http_status 200 }
+  # end
 end
