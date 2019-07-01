@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  devise_for :admins
+  devise_for :users
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  get '/admin' => 'rails_admin/main#dashboard', as: :admin_root
+  get '/admin' => 'rails_admin/main#dashboard', as: :user_root
+  root to: 'pages#index'
 
   mount Rswag::Ui::Engine => '/api-docs'
   mount Rswag::Api::Engine => '/api-docs'
