@@ -14,6 +14,10 @@ gem 'devise_token_auth'
 gem 'fast_jsonapi'
 gem 'rswag', '~> 2.0', '>= 2.0.5'
 gem 'rails_admin', '~> 1.4', '>= 1.4.2'
+gem 'redis'
+gem 'sidekiq'
+gem 'sidekiq-cron'
+gem 'fcm'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
