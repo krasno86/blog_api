@@ -13,20 +13,13 @@
       "role": { "type": "string" }
     },
     "relationships": {
-      "comments": {
+      "tasks": {
         "data": [
           {
             "id": { "type": "integer" },
-            "text": { "type": "text" },
-            "file": { "type": "file" }
-          }
-        ]
-      },
-      "projects": {
-        "data": [
-          {
-            "id": { "type": "integer" },
-            "name": { "type": "string" }
+            "title": { "type": "string" },
+            "description": { "type": "string" },
+            "notification_date": { "type": "string" }
           }
         ]
       }

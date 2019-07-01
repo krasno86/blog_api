@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe 'sign_in and sign_out', type: :request do
+RSpec.describe 'sessions', type: :request do
   let(:user) { create(:user) }
-  describe 'GET /api/v1/projects' do
+  describe 'get new session' do
     context 'invalid username' do
       before {
-        post '/auth/sign_in',
+        post '/api/v1/auth/sign_in',
              params: {
                  email: 'test@example.com',
                  password: user.password,
@@ -15,9 +15,9 @@ RSpec.describe 'sign_in and sign_out', type: :request do
       it { expect(response).to have_http_status 401 }
     end
 
-    context 'sign_in' do
+    context 'new session' do
       before {
-        post '/auth/sign_in',
+        post '/api/v1/auth/sign_in',
              params: {
                  email: user.email,
                  password: '12345678'
@@ -29,8 +29,8 @@ RSpec.describe 'sign_in and sign_out', type: :request do
       end
     end
 
-    context 'sign_out' do
-      before { delete '/auth/sign_out', headers: user.create_new_auth_token }
+    context 'delete session' do
+      before { delete '/api/v1/auth/sign_out', headers: user.create_new_auth_token }
       it { expect(response).to have_http_status 200 }
     end
   end
