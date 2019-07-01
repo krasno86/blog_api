@@ -5,26 +5,9 @@
     "type": "object",
     "attributes": {
       "id": { "type": "integer" },
-      "name": { "type": "string" }
-    },
-    "relationships": {
-      "comments": {
-        "data": [
-          {
-            "id": { "type": "integer" },
-            "text": { "type": "text" },
-            "file": { "type": "file" }
-          }
-        ]
-      },
-      "project": {
-        "data": [
-          {
-            "id": { "type": "integer" },
-            "name": { "type": "string" }
-          }
-        ]
-      }
+      "name": { "type": "string" },
+      "description": { "type": "string" },
+      "notification_date": { "type": "string" }
     }
   }
 }

@@ -5,7 +5,7 @@
     "version": "v1"
   },
   "paths": {
-    "/auth": {
+    "/api/v1/auth": {
       "post": {
         "summary": "Creates a new user",
         "tags": [
@@ -26,9 +26,6 @@
                 },
                 "password": {
                   "type": "string"
-                },
-                "password_confirmation": {
-                  "type": "string"
                 }
               },
               "required": [
@@ -48,11 +45,11 @@
                 "data": {
                   "id": 1,
                   "provider": "email",
-                  "uid": "kerakunze@reichel.biz",
+                  "uid": "salvador@dubuqueabernathy.co",
                   "allow_password_change": false,
-                  "email": "kerakunze@reichel.biz",
-                  "created_at": "2019-06-27T20:56:20.595Z",
-                  "updated_at": "2019-06-27T20:56:20.659Z",
+                  "email": "salvador@dubuqueabernathy.co",
+                  "created_at": "2019-07-01T15:02:56.459Z",
+                  "updated_at": "2019-07-01T15:02:56.523Z",
                   "role": "user"
                 }
               }
@@ -91,29 +88,9 @@
             }
           }
         }
-      },
-      "delete": {
-        "summary": "deleting user",
-        "tags": [
-          "Registration"
-        ],
-        "consumes": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "user deleted",
-            "examples": {
-              "application/json": {
-                "status": "success",
-                "message": "Account with UID 'test@gmail.com' has been destroyed."
-              }
-            }
-          }
-        }
       }
     },
-    "/auth/sign_in": {
+    "/api/v1/auth/sign_in": {
       "post": {
         "summary": "Creates a new session",
         "tags": [
@@ -149,7 +126,7 @@
             "examples": {
               "application/json": {
                 "data": {
-                  "id": 3,
+                  "id": 2,
                   "email": "test@gmail.com",
                   "provider": "email",
                   "uid": "test@gmail.com",
@@ -173,7 +150,7 @@
         }
       }
     },
-    "/auth/sign_out": {
+    "/api/v1/auth/sign_out": {
       "delete": {
         "summary": "deleting session",
         "tags": [
@@ -215,6 +192,9 @@
                 },
                 "description": {
                   "type": "string"
+                },
+                "notification_date": {
+                  "type": "string"
                 }
               },
               "required": [
@@ -226,7 +206,7 @@
         ],
         "responses": {
           "201": {
-            "description": "group created",
+            "description": "task created",
             "examples": {
               "application/json": {
                 "data": {
@@ -239,7 +219,7 @@
                   "relationships": {
                     "user": {
                       "data": {
-                        "id": "5",
+                        "id": "4",
                         "type": "user"
                       }
                     }
@@ -260,7 +240,7 @@
         ],
         "responses": {
           "200": {
-            "description": "group created",
+            "description": "task created",
             "examples": {
               "application/json": {
                 "data": [
@@ -268,13 +248,13 @@
                     "id": "3",
                     "type": "task",
                     "attributes": {
-                      "name": "Bespin",
+                      "name": "Utapau",
                       "description": "description"
                     },
                     "relationships": {
                       "user": {
                         "data": {
-                          "id": "6",
+                          "id": "5",
                           "type": "user"
                         }
                       }
@@ -284,13 +264,13 @@
                     "id": "2",
                     "type": "task",
                     "attributes": {
-                      "name": "Cloud City",
+                      "name": "Jedha",
                       "description": "description"
                     },
                     "relationships": {
                       "user": {
                         "data": {
-                          "id": "6",
+                          "id": "5",
                           "type": "user"
                         }
                       }
@@ -329,13 +309,13 @@
                   "id": "4",
                   "type": "task",
                   "attributes": {
-                    "name": "Jedha",
+                    "name": "Dagobah",
                     "description": "description"
                   },
                   "relationships": {
                     "user": {
                       "data": {
-                        "id": "7",
+                        "id": "6",
                         "type": "user"
                       }
                     }
@@ -397,6 +377,9 @@
                 },
                 "description": {
                   "type": "string"
+                },
+                "notification_date": {
+                  "type": "string"
                 }
               }
             }
@@ -404,7 +387,7 @@
         ],
         "responses": {
           "200": {
-            "description": "group created",
+            "description": "task created",
             "examples": {
               "application/json": {
                 "data": {
@@ -417,7 +400,7 @@
                   "relationships": {
                     "user": {
                       "data": {
-                        "id": "10",
+                        "id": "9",
                         "type": "user"
                       }
                     }

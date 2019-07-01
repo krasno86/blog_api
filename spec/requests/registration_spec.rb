@@ -9,9 +9,7 @@ RSpec.describe 'sign_up ', type: :request do
         post '/api/v1/auth',
              params: {
                  email: 'test@example.com',
-                 password: 'swgfw',
-                 password_confirmation: 'swgfw',
-                 uid: 'wf4f3f34'
+                 password: 'swgfw'
              }
       }
       it { expect(response).to have_http_status 422 }
@@ -22,9 +20,7 @@ RSpec.describe 'sign_up ', type: :request do
         post '/api/v1/auth',
              params: {
                  email: 'test@example.com',
-                 password: '12345678',
-                 password_confirmation: '12345678',
-                 uid: 'dy45ry4'
+                 password: '12345678'
              }
       }
       it 'status 200 and valid user' do

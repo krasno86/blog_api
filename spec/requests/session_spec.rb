@@ -9,7 +9,6 @@ RSpec.describe 'sessions', type: :request do
              params: {
                  email: 'test@example.com',
                  password: user.password,
-                 uid: user.uid
              }
       }
       it { expect(response).to have_http_status 401 }

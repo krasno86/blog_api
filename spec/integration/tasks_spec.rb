@@ -11,14 +11,15 @@ RSpec.describe 'Tasks' do
           type: :object,
           properties: {
               name: { type: :string },
-              description: { type: :string }
+              description: { type: :string },
+              notification_date: { type: :string }
           },
           required: %w[name description]
       }
 
       let(:signed_in_user) { create :user}
 
-      response '201', 'group created' do
+      response '201', 'task created' do
         let(:task) { { name: '1111', description: 'rswgwgefwag' } }
 
         run_test!
@@ -33,7 +34,7 @@ RSpec.describe 'Tasks' do
 
       let(:signed_in_user) { create :user}
 
-      response '200', 'group created' do
+      response '200', 'task created' do
         before { create_list :task, 2, user: signed_in_user }
         run_test!
       end
@@ -89,13 +90,14 @@ RSpec.describe 'Tasks' do
           type: :object,
           properties: {
               name: { type: :string },
-              description: { type: :string }
+              description: { type: :string },
+              notification_date: { type: :string }
           }
       }
 
       let(:signed_in_user) { create :user}
 
-      response '200', 'group created' do
+      response '200', 'task created' do
         let(:id) { task.id }
         let(:task2) { { name: '1111', description: 'rswgwgefwag' } }
 
