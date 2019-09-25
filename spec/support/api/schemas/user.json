@@ -9,20 +9,10 @@
       "uid": { "type": "string" },
       "allow_password_change": { "type": "string" },
       "created_at": { "type": "string" },
-      "updated_at": { "type": "string" },
-      "role": { "type": "string" }
+      "updated_at": { "type": "string" }
     },
     "relationships": {
-      "comments": {
-        "data": [
-          {
-            "id": { "type": "integer" },
-            "text": { "type": "text" },
-            "file": { "type": "file" }
-          }
-        ]
-      },
-      "projects": {
+      "tasks": {
         "data": [
           {
             "id": { "type": "integer" },

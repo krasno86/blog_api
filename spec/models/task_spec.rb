@@ -28,7 +28,7 @@ RSpec.describe Task, type: :model do
     let(:task) { create :task, name: '1', description: 'bla bla', user: user }
 
     it 'includes name and description' do
-      task_params = '{"name": "1", "description": "bla bla", "notification_date": null}'
+      task_params = '{"name": "1", "description": "bla bla"}'
       expect(task.to_json).to be_json_eql(task_params).excluding('user_id')
     end
 

@@ -20,7 +20,7 @@ RSpec.describe 'sign_in and sign_out', type: :request do
         post '/auth/sign_in',
              params: {
                  email: user.email,
-                 password: '12345678'
+                 password: user.password
              }
       }
       it 'valid params' do

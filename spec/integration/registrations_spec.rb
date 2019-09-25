@@ -12,8 +12,7 @@ RSpec.describe 'User registration' do
           type: :object,
           properties: {
               email: { type: :string },
-              password: { type: :string },
-              password_confirmation: { type: :string }
+              password: { type: :string }
           },
           required: %w[email password password_confirmation]
       }
@@ -21,8 +20,7 @@ RSpec.describe 'User registration' do
       response '200', 'user registered' do
         let(:user) do
           { email: Faker::Internet.email,
-            password: 'aa123456',
-            password_confirmation: 'aa123456'}
+            password: 'aa123456'}
         end
         run_test!
       end

@@ -13,7 +13,7 @@ RSpec.describe Task, type: :request do
     context 'authorized user to index' do
       before {
         2.times {create(:task, user: user) }
-        get "/api/v1/tasks", headers: user.create_new_auth_token
+        get '/api/v1/tasks', headers: user.create_new_auth_token
       }
       it { expect(response).to have_http_status 200 }
       it 'show task' do
@@ -35,9 +35,9 @@ RSpec.describe Task, type: :request do
 
     context 'create' do
       before {
-        post "/api/v1/tasks",
+        post '/api/v1/tasks',
              params: { task: { name: '1', description: 'description' } },
-                      headers: user.create_new_auth_token
+             headers: user.create_new_auth_token
       }
       it { expect(response).to have_http_status 201 }
     end
