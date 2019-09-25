@@ -1,0 +1,12 @@
+{
+  "data": {
+    "id": { "type": "integer" },
+    "required": ["user"],
+    "type": "object",
+    "attributes": {
+      "id": { "type": "integer" },
+      "name": { "type": "string" },
+      "description": { "type": "string" }
+    }
+  }
+}

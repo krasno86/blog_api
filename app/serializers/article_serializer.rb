@@ -1,4 +1,4 @@
-class TaskSerializer
+class ArticleSerializer
   include FastJsonapi::ObjectSerializer
   attributes :name, :description
 

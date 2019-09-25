@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :task do
+  factory :article do
     name { Faker::StarWars.planet }
     description { 'description' }
   end

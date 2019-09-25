@@ -2,12 +2,12 @@
 
 require 'swagger_helper'
 
-RSpec.describe 'Tasks' do
-  path '/api/v1/tasks' do
-    post 'Creates a new task' do
-      tags 'Tasks'
+RSpec.describe 'articles' do
+  path '/api/v1/articles' do
+    post 'Creates a new article' do
+      tags 'Articles'
       consumes 'application/json'
-      parameter name: :task, in: :body, schema: {
+      parameter name: :article, in: :body, schema: {
           type: :object,
           properties: {
               name: { type: :string },
@@ -18,74 +18,74 @@ RSpec.describe 'Tasks' do
 
       let(:signed_in_user) { create :user}
 
-      response '201', 'group created' do
-        let(:task) { { name: '1111', description: 'rswgwgefwag' } }
+      response '201', 'article created' do
+        let(:article) { { name: '1111', description: 'rswgwgefwag' } }
 
         run_test!
       end
     end
   end
 
-  path '/api/v1/tasks' do
-    get 'Shows tasks' do
-      tags 'Tasks'
+  path '/api/v1/articles' do
+    get 'Shows articles' do
+      tags 'Articles'
       consumes 'application/json'
 
       let(:signed_in_user) { create :user}
 
       response '200', 'group created' do
-        before { create_list :task, 2, user: signed_in_user }
+        before { create_list :article, 2, user: signed_in_user }
         run_test!
       end
     end
   end
 
-  path '/api/v1/tasks/{id}' do
+  path '/api/v1/articles/{id}' do
     let(:signed_in_user) { create :user }
-    let(:task)           { create :task, user: signed_in_user }
+    let(:article)           { create :article, user: signed_in_user }
 
-    get 'Show a task' do
-      tags 'Tasks'
+    get 'Show a article' do
+      tags 'Articles'
       consumes 'application/json'
       parameter name: :id, in: :path, type: :string
 
-      response '200', 'Task founded' do
-        let(:id) { task.id }
+      response '200', 'Articles founded' do
+        let(:id) { article.id }
         run_test!
       end
 
-      response '404', 'Task not found' do
+      response '404', 'Articles not found' do
         let(:id) { 'invalid' }
         run_test!
       end
     end
   end
 
-  path '/api/v1/tasks/{id}' do
+  path '/api/v1/articles/{id}' do
     let(:signed_in_user) { create :user }
-    let(:task)           { create :task, user: signed_in_user }
+    let(:article)           { create :article, user: signed_in_user }
 
-    delete 'Delete a task' do
-      tags 'Tasks'
+    delete 'Delete a article' do
+      tags 'Articles'
       consumes 'application/json'
       parameter name: :id, in: :path, type: :string
 
-      response '204', 'Task destroyed' do
-        let(:id) { task.id }
+      response '204', 'Articles destroyed' do
+        let(:id) { article.id }
         run_test!
       end
     end
   end
 
-  path '/api/v1/tasks/{id}' do
+  path '/api/v1/articles/{id}' do
     let(:signed_in_user) { create :user }
-    let(:task)           { create :task, user: signed_in_user }
+    let(:article)           { create :article, user: signed_in_user }
 
-    put 'Update a task' do
-      tags 'Tasks'
+    put 'Update a article' do
+      tags 'Articles'
       consumes 'application/json'
       parameter name: :id, in: :path, type: :string
-      parameter name: :task, in: :body, schema: {
+      parameter name: :article, in: :body, schema: {
           type: :object,
           properties: {
               name: { type: :string },
@@ -96,8 +96,8 @@ RSpec.describe 'Tasks' do
       let(:signed_in_user) { create :user}
 
       response '200', 'group created' do
-        let(:id) { task.id }
-        let(:task2) { { name: '1111', description: 'rswgwgefwag' } }
+        let(:id) { article.id }
+        let(:article2) { { name: '1111', description: 'rswgwgefwag' } }
 
         run_test!
       end

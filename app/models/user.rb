@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   include DeviseTokenAuth::Concerns::User
   before_save :downcase_email
 
-  has_many :tasks, dependent: :destroy
+  has_many :articles, dependent: :destroy
 
   validates_presence_of :email
   validates_uniqueness_of :email, case_sensitive: false

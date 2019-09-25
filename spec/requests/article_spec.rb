@@ -1,22 +1,22 @@
 require 'rails_helper'
 
-RSpec.describe Task, type: :request do
+RSpec.describe Article, type: :request do
   let(:user) { create :user }
-  let(:task)  { create :task, user: user }
+  let(:article)  { create :article, user: user }
 
   describe 'get index' do
     context 'unauthorized user' do
-      before { get "/api/v1/tasks" }
+      before { get "/api/v1/articles" }
       it { expect(response).to have_http_status 401 }
     end
 
     context 'authorized user to index' do
       before {
-        2.times {create(:task, user: user) }
-        get '/api/v1/tasks', headers: user.create_new_auth_token
+        2.times {create(:article, user: user) }
+        get '/api/v1/articles', headers: user.create_new_auth_token
       }
       it { expect(response).to have_http_status 200 }
-      it 'show task' do
+      it 'show article' do
         expect(json['data'].length).to eq 2
         expect(json['data'][1]['attributes'].keys).to contain_exactly(*%w[description name])
       end
@@ -24,19 +24,19 @@ RSpec.describe Task, type: :request do
 
     context 'get show' do
       before {
-        get "/api/v1/tasks/#{task.id}",
+        get "/api/v1/articles/#{article.id}",
              headers: user.create_new_auth_token
       }
       it { expect(response).to have_http_status 200 }
-      it 'show task' do
-        expect(json).to match_response_schema("task")
+      it 'show article' do
+        expect(json).to match_response_schema("article")
       end
     end
 
     context 'create' do
       before {
-        post '/api/v1/tasks',
-             params: { task: { name: '1', description: 'description' } },
+        post '/api/v1/articles',
+             params: { article: { name: '1', description: 'description' } },
              headers: user.create_new_auth_token
       }
       it { expect(response).to have_http_status 201 }
@@ -44,7 +44,7 @@ RSpec.describe Task, type: :request do
 
     context 'DELETE' do
       before {
-        delete "/api/v1/tasks/#{task.id}",
+        delete "/api/v1/articles/#{article.id}",
                headers: user.create_new_auth_token
       }
       it { expect(response).to have_http_status 204 }
@@ -52,8 +52,8 @@ RSpec.describe Task, type: :request do
 
     context 'update' do
       before {
-        put "/api/v1/tasks/#{task.id}",
-            params: {task: {name: Faker::StarWars.droid} }, headers: user.create_new_auth_token
+        put "/api/v1/articles/#{article.id}",
+            params: {article: {name: Faker::StarWars.droid} }, headers: user.create_new_auth_token
       }
       it { expect(response).to have_http_status 200 }
     end

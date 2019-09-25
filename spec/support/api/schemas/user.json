@@ -12,11 +12,12 @@
       "updated_at": { "type": "string" }
     },
     "relationships": {
-      "tasks": {
+      "articles": {
         "data": [
           {
             "id": { "type": "integer" },
-            "name": { "type": "string" }
+            "name": { "type": "string" },
+            "description": { "type": "string" }
           }
         ]
       }
