@@ -2,7 +2,6 @@ class ApplicationController < ActionController::API
   include DeviseTokenAuth::Concerns::SetUserByToken
   include ActionController::MimeResponds
   respond_to :json
-  include Pundit
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 

@@ -5,13 +5,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :trackable, :validatable
   include DeviseTokenAuth::Concerns::User
-  enum role: [:user, :admin]
-  after_initialize :set_default_role, :if => :new_record?
   before_save :downcase_email
-
-  def set_default_role
-    self.role ||= :user
-  end
 
   has_many :tasks, dependent: :destroy
 
