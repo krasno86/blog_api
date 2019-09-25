@@ -23,18 +23,18 @@ RSpec.describe Task, type: :model do
     it { expect(invalid_task2).to be_invalid }
   end
 
-  context "#to_json" do
+  context '#to_json' do
     let(:user)    { create :user }
     let(:task) { create :task, name: '1', description: 'bla bla', user: user }
 
-    it "includes name and description" do
-      task_params = %({"name": "1", "description": "bla bla"})
-      expect(task.to_json).to be_json_eql(task_params).excluding("user_id")
+    it 'includes name and description' do
+      task_params = '{"name": "1", "description": "bla bla", "notification_date": null}'
+      expect(task.to_json).to be_json_eql(task_params).excluding('user_id')
     end
 
     it "includes the ID" do
-      expect(task.to_json).to have_json_path("id")
-      expect(task.to_json).to have_json_type(Integer).at_path("id")
+      expect(task.to_json).to have_json_path('id')
+      expect(task.to_json).to have_json_type(Integer).at_path('id')
     end
   end
 end

@@ -36,7 +36,6 @@ module Api::V1
     end
 
     def destroy
-      authorize @task
       if @task.destroy
         head :no_content, status: :ok
       else
