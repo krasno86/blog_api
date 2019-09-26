@@ -1,24 +1,11 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Documentation gem - rswag, location - /api-docs/index.html.
 
-Things you may want to cover:
+There is planned to have new type of posts in the future - questionnaire.
+Answer: In that case I prefer STI(Single Table Inheritance) with basic model article and two types of model - post and questionnaire. if in the future we need to add additional type, we can easily do it.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+STI PROS:
+- Simple to implement
+- DRY — saves replicated code using inheritance and shared attributes
+- Allows subclasses to have own behavior as necessary
