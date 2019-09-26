@@ -6,15 +6,15 @@ RSpec.describe Article, type: :request do
 
   describe 'get index' do
     context 'unauthorized user' do
-      before { get "/api/v1/articles" }
+      before { get '/api/v1/articles' }
       it { expect(response).to have_http_status 401 }
     end
 
     context 'authorized user to index' do
-      before {
+      before do
         2.times {create(:article, user: user) }
         get '/api/v1/articles', headers: user.create_new_auth_token
-      }
+      end
       it { expect(response).to have_http_status 200 }
       it 'show article' do
         expect(json['data'].length).to eq 2
@@ -23,10 +23,10 @@ RSpec.describe Article, type: :request do
     end
 
     context 'get show' do
-      before {
+      before do
         get "/api/v1/articles/#{article.id}",
              headers: user.create_new_auth_token
-      }
+      end
       it { expect(response).to have_http_status 200 }
       it 'show article' do
         expect(json).to match_response_schema("article")
@@ -34,27 +34,27 @@ RSpec.describe Article, type: :request do
     end
 
     context 'create' do
-      before {
+      before do
         post '/api/v1/articles',
-             params: { article: { name: '1', description: 'description' } },
+             params: {article: {name: '1', description: 'description'}},
              headers: user.create_new_auth_token
-      }
+      end
       it { expect(response).to have_http_status 201 }
     end
 
     context 'DELETE' do
-      before {
+      before do
         delete "/api/v1/articles/#{article.id}",
                headers: user.create_new_auth_token
-      }
+      end
       it { expect(response).to have_http_status 204 }
     end
 
     context 'update' do
-      before {
+      before do
         put "/api/v1/articles/#{article.id}",
-            params: {article: {name: Faker::StarWars.droid} }, headers: user.create_new_auth_token
-      }
+            params: {article: {name: Faker::StarWars.droid}}, headers: user.create_new_auth_token
+      end
       it { expect(response).to have_http_status 200 }
     end
   end

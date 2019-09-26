@@ -5,11 +5,11 @@ include Serialize_object
 
 RSpec.describe User, type: :model do
   context 'model associations' do
-    it { expect have_many(:tasks) }
+    it { expect have_many(:articles) }
   end
 
   context 'db column' do
-    it { expect have_db_column(:username).of_type(:string) }
+    it { expect have_db_column(:email).of_type(:string) }
     it { expect have_db_column(:uid).of_type(:string) }
   end
 
@@ -21,22 +21,22 @@ RSpec.describe User, type: :model do
     it { expect(invalid_user).not_to be_valid }
   end
 
-  context "#to_json" do
+  context '#to_json' do
     let(:user)    { create(:user, email: '1@gmail.com') }
 
-    it "includes name" do
-      email = %({"email":"1@gmail.com","allow_password_change": false,"provider": "email","uid": "1@gmail.com"})
-      expect(user.to_json).to be_json_eql(email).excluding("project_id")
+    it 'includes email' do
+      data = '{"email":"1@gmail.com","allow_password_change": false,"provider": "email","uid": "1@gmail.com"}'
+      expect(user.to_json).to be_json_eql(data).excluding('email')
     end
 
-    it "includes the ID" do
-      expect(user.to_json).to have_json_path("id")
-      expect(user.to_json).to have_json_type(Integer).at_path("id")
+    it 'includes the ID' do
+      expect(user.to_json).to have_json_path('id')
+      expect(user.to_json).to have_json_type(Integer).at_path('id')
     end
 
-    it "includes the email" do
-      expect(user.to_json).to have_json_path("email")
-      expect(user.to_json).to have_json_type(String).at_path("email")
+    it 'includes the email' do
+      expect(user.to_json).to have_json_path('email')
+      expect(user.to_json).to have_json_type(String).at_path('email')
     end
   end
 end

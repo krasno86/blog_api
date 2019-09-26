@@ -4,10 +4,13 @@ require 'rails_helper'
 
 RSpec.describe Article, type: :model do
   context 'db column' do
+    it { expect have_db_column(:name).of_type(:string) }
     it { expect have_db_column(:description).of_type(:string) }
+    it { expect have_db_column(:avatar).of_type(:string) }
   end
 
-  context 'basic validation presence_of and uniq' do
+  context 'basic validation presence_of' do
+    it { expect validate_presence_of(:name) }
     it { expect validate_presence_of(:description) }
   end
 
@@ -28,11 +31,11 @@ RSpec.describe Article, type: :model do
     let(:article) { create :article, name: '1', description: 'bla bla', user: user }
 
     it 'includes name and description' do
-      article_params = '{"name": "1", "description": "bla bla"}'
+      article_params = '{"name": "1", "description": "bla bla", "avatar": {"thumb": {"url": null},"url": null}}'
       expect(article.to_json).to be_json_eql(article_params).excluding('user_id')
     end
 
-    it "includes the ID" do
+    it 'includes the ID' do
       expect(article.to_json).to have_json_path('id')
       expect(article.to_json).to have_json_type(Integer).at_path('id')
     end

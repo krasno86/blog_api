@@ -1,7 +1,6 @@
 {
   "data": {
     "id": { "type": "integer" },
-    "required": ["task"],
     "type": "object",
     "attributes": {
       "id": { "type": "integer" },

@@ -11,7 +11,8 @@ RSpec.describe 'articles' do
           type: :object,
           properties: {
               name: { type: :string },
-              description: { type: :string }
+              description: { type: :string },
+              avatar: { type: :string }
           },
           required: %w[name description]
       }
@@ -89,7 +90,8 @@ RSpec.describe 'articles' do
           type: :object,
           properties: {
               name: { type: :string },
-              description: { type: :string }
+              description: { type: :string },
+              avatar: { type: :string }
           }
       }
 

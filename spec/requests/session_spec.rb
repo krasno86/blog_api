@@ -1,38 +1,39 @@
 require 'rails_helper'
 
-RSpec.describe 'sign_in and sign_out', type: :request do
+RSpec.describe 'Sessions', type: :request do
   let(:user) { create(:user) }
-  describe 'GET /api/v1/projects' do
-    context 'invalid username' do
-      before {
+
+  describe 'POST #create' do
+    context 'with not verified user' do
+      before do
         post '/auth/sign_in',
              params: {
-                 email: 'test@example.com',
-                 password: user.password,
-                 uid: user.uid
+                 email: '1@example.com',
+                 password: 'asd123456'
              }
-      }
+      end
       it { expect(response).to have_http_status 401 }
     end
 
-    context 'sign_in' do
-      before {
+    context 'when all params are correct' do
+      before do
         post '/auth/sign_in',
              params: {
                  email: user.email,
                  password: user.password
              }
-      }
-      it 'valid params' do
+      end
+
+      it 'success' do
         expect(response).to have_http_status 200
-        expect(json['data']).to match_response_schema("user")
+        expect(json['data']).to match_response_schema('user')
+        expect(response.has_header?('access-token')).to eq(true)
       end
     end
 
-    context 'sign_out' do
+    context 'destroy session' do
       before { delete '/auth/sign_out', headers: user.create_new_auth_token }
       it { expect(response).to have_http_status 200 }
     end
   end
 end
-
