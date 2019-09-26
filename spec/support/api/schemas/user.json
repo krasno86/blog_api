@@ -1,7 +1,6 @@
 {
   "data": {
     "id": { "type": "integer" },
-    "required": ["task"],
     "type": "object",
     "attributes": {
       "id": { "type": "integer" },
@@ -9,17 +8,16 @@
       "uid": { "type": "string" },
       "allow_password_change": { "type": "string" },
       "created_at": { "type": "string" },
-      "updated_at": { "type": "string" },
-      "role": { "type": "string" }
+      "updated_at": { "type": "string" }
     },
     "relationships": {
-      "tasks": {
+      "articles": {
         "data": [
           {
             "id": { "type": "integer" },
-            "title": { "type": "string" },
+            "name": { "type": "string" },
             "description": { "type": "string" },
-            "notification_date": { "type": "string" }
+            "avatar": { "type": "string" }
           }
         ]
       }

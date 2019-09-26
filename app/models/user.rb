@@ -5,23 +5,13 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :trackable, :validatable
   include DeviseTokenAuth::Concerns::User
-  enum role: [:user, :admin]
-  after_initialize :set_default_role, :if => :new_record?
   before_save :downcase_email
 
-  def set_default_role
-    self.role ||= :user
-  end
-
-  has_many :tasks, dependent: :destroy
+  has_many :articles, dependent: :destroy
 
   validates_presence_of :email
   validates_uniqueness_of :email, case_sensitive: false
   validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
-
-  def admin?
-    role == 'admin'
-  end
 
   private
 

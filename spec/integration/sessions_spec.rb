@@ -3,7 +3,7 @@
 require 'swagger_helper'
 
 RSpec.describe 'Session' do
-  path '/api/v1/auth/sign_in' do
+  path '/auth/sign_in' do
 
     post 'Creates a new session' do
       tags 'Session'
@@ -31,7 +31,7 @@ RSpec.describe 'Session' do
     end
   end
 
-  path '/api/v1/auth/sign_out' do
+  path '/auth/sign_out' do
     delete 'deleting session' do
       tags 'Session'
       consumes 'application/json'
