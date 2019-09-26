@@ -5,6 +5,241 @@
     "version": "v1"
   },
   "paths": {
+    "/api/v1/articles": {
+      "post": {
+        "summary": "Creates a new article",
+        "tags": [
+          "Articles"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "article",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "description"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "article created",
+            "examples": {
+              "application/json": {
+                "data": {
+                  "id": "1",
+                  "type": "article",
+                  "attributes": {
+                    "name": "1111",
+                    "description": "rswgwgefwag"
+                  },
+                  "relationships": {
+                    "user": {
+                      "data": {
+                        "id": "1",
+                        "type": "user"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Shows articles",
+        "tags": [
+          "Articles"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Articles founded",
+            "examples": {
+              "application/json": {
+                "data": [
+                  {
+                    "id": "3",
+                    "type": "article",
+                    "attributes": {
+                      "name": "Kamino",
+                      "description": "description"
+                    },
+                    "relationships": {
+                      "user": {
+                        "data": {
+                          "id": "2",
+                          "type": "user"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "id": "2",
+                    "type": "article",
+                    "attributes": {
+                      "name": "Cantonica",
+                      "description": "description"
+                    },
+                    "relationships": {
+                      "user": {
+                        "data": {
+                          "id": "2",
+                          "type": "user"
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/articles/{id}": {
+      "get": {
+        "summary": "Show article",
+        "tags": [
+          "Articles"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Article found",
+            "examples": {
+              "application/json": {
+                "data": {
+                  "id": "4",
+                  "type": "article",
+                  "attributes": {
+                    "name": "Sullust",
+                    "description": "description"
+                  },
+                  "relationships": {
+                    "user": {
+                      "data": {
+                        "id": "3",
+                        "type": "user"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Article not found"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete article",
+        "tags": [
+          "Articles"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Articles destroyed"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update article",
+        "tags": [
+          "Articles"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "article",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "group created",
+            "examples": {
+              "application/json": {
+                "data": {
+                  "id": "6",
+                  "type": "article",
+                  "attributes": {
+                    "name": "Sullust",
+                    "description": "description"
+                  },
+                  "relationships": {
+                    "user": {
+                      "data": {
+                        "id": "6",
+                        "type": "user"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/auth": {
       "post": {
         "summary": "Creates a new user",
@@ -26,9 +261,6 @@
                 },
                 "password": {
                   "type": "string"
-                },
-                "password_confirmation": {
-                  "type": "string"
                 }
               },
               "required": [
@@ -46,14 +278,13 @@
               "application/json": {
                 "status": "success",
                 "data": {
-                  "id": 1,
+                  "id": 7,
                   "provider": "email",
-                  "uid": "reynaldo@bernier.net",
+                  "uid": "zack@mayertmosciski.biz",
                   "allow_password_change": false,
-                  "email": "reynaldo@bernier.net",
-                  "created_at": "2019-09-25T00:16:57.139Z",
-                  "updated_at": "2019-09-25T00:16:57.204Z",
-                  "role": "user"
+                  "email": "zack@mayertmosciski.biz",
+                  "created_at": "2019-09-25T15:46:28.670Z",
+                  "updated_at": "2019-09-25T15:46:28.734Z"
                 }
               }
             }
@@ -70,8 +301,7 @@
                   "allow_password_change": false,
                   "email": "email",
                   "created_at": null,
-                  "updated_at": null,
-                  "role": "user"
+                  "updated_at": null
                 },
                 "errors": {
                   "password": [
@@ -149,12 +379,11 @@
             "examples": {
               "application/json": {
                 "data": {
-                  "id": 3,
+                  "id": 9,
                   "email": "test@gmail.com",
                   "provider": "email",
                   "uid": "test@gmail.com",
-                  "allow_password_change": false,
-                  "role": "user"
+                  "allow_password_change": false
                 }
               }
             }
@@ -188,241 +417,6 @@
             "examples": {
               "application/json": {
                 "success": true
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/tasks": {
-      "post": {
-        "summary": "Creates a new task",
-        "tags": [
-          "Tasks"
-        ],
-        "consumes": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "task",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string"
-                },
-                "description": {
-                  "type": "string"
-                }
-              },
-              "required": [
-                "name",
-                "description"
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "group created",
-            "examples": {
-              "application/json": {
-                "data": {
-                  "id": "1",
-                  "type": "task",
-                  "attributes": {
-                    "name": "1111",
-                    "description": "rswgwgefwag"
-                  },
-                  "relationships": {
-                    "user": {
-                      "data": {
-                        "id": "5",
-                        "type": "user"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "get": {
-        "summary": "Shows tasks",
-        "tags": [
-          "Tasks"
-        ],
-        "consumes": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "group created",
-            "examples": {
-              "application/json": {
-                "data": [
-                  {
-                    "id": "3",
-                    "type": "task",
-                    "attributes": {
-                      "name": "Alderaan",
-                      "description": "description"
-                    },
-                    "relationships": {
-                      "user": {
-                        "data": {
-                          "id": "6",
-                          "type": "user"
-                        }
-                      }
-                    }
-                  },
-                  {
-                    "id": "2",
-                    "type": "task",
-                    "attributes": {
-                      "name": "Takodana",
-                      "description": "description"
-                    },
-                    "relationships": {
-                      "user": {
-                        "data": {
-                          "id": "6",
-                          "type": "user"
-                        }
-                      }
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/tasks/{id}": {
-      "get": {
-        "summary": "Show a task",
-        "tags": [
-          "Tasks"
-        ],
-        "consumes": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "type": "string",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Task founded",
-            "examples": {
-              "application/json": {
-                "data": {
-                  "id": "4",
-                  "type": "task",
-                  "attributes": {
-                    "name": "Jedha",
-                    "description": "description"
-                  },
-                  "relationships": {
-                    "user": {
-                      "data": {
-                        "id": "7",
-                        "type": "user"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Task not found"
-          }
-        }
-      },
-      "delete": {
-        "summary": "Delete a task",
-        "tags": [
-          "Tasks"
-        ],
-        "consumes": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "type": "string",
-            "required": true
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Task destroyed"
-          }
-        }
-      },
-      "put": {
-        "summary": "Update a task",
-        "tags": [
-          "Tasks"
-        ],
-        "consumes": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "type": "string",
-            "required": true
-          },
-          {
-            "name": "task",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string"
-                },
-                "description": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "group created",
-            "examples": {
-              "application/json": {
-                "data": {
-                  "id": "6",
-                  "type": "task",
-                  "attributes": {
-                    "name": "Jakku",
-                    "description": "description"
-                  },
-                  "relationships": {
-                    "user": {
-                      "data": {
-                        "id": "10",
-                        "type": "user"
-                      }
-                    }
-                  }
-                }
               }
             }
           }
