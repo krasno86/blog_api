@@ -2,7 +2,6 @@
 
 module Api::V1
   class ArticlesController < ApplicationController
-    include DeviseTokenAuth::Concerns::SetUserByToken
     include Serialize_object
 
     before_action :authenticate_user!
