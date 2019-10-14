@@ -6,7 +6,7 @@ class Api::V1::ApplicationController < ActionController::API
   respond_to :json
 
   before_action :configure_permitted_parameters, if: :devise_controller?
-  
+
   protected
 
   def configure_permitted_parameters
