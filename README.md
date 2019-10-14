@@ -1,6 +1,6 @@
 # README
 
-Documentation gem - rswag, location - /api-docs/index.html
+Documentation gem - rswag, location - /api-docs/index.html.
 registration - devise_token_auth
 
 There is planned to have new type of posts in the future - questionnaire.
