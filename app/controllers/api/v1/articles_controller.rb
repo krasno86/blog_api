@@ -2,8 +2,6 @@
 
 module Api::V1
   class ArticlesController < ApplicationController
-    include Serialize_object
-
     before_action :authenticate_user!
     before_action :set_article, only: [:show, :update, :destroy]
 
@@ -20,7 +18,7 @@ module Api::V1
     def create
       @article = @current_user.articles.new(article_params)
       if @article.save!
-        render json: serialized_object(@article), status: 201
+        render json: ArticleSerializer.new(@article).serialized_json, status: 201
       else
         render json: @article.errors.messages, status: 422
       end
@@ -28,7 +26,7 @@ module Api::V1
 
     def update
       if @article.update(article_params)
-        render json: serialized_object(@article)
+        render json: ArticleSerializer.new(@article).serialized_json
       else
         render json: @article.errors, status: :unprocessable_entity
       end
@@ -45,7 +43,7 @@ module Api::V1
     private
 
     def article_params
-      params.require(:article).permit(:name, :description)
+      params.require(:article).permit(:name, :description, :avatar)
     end
 
     def set_article

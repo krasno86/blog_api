@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-include Serialize_object
 
 RSpec.describe User, type: :model do
   context 'model associations' do

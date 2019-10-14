@@ -1,6 +1,6 @@
 class ArticleSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :name, :description
+  attributes :name, :description, :avatar
 
   belongs_to :user
 end
