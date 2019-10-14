@@ -18,7 +18,7 @@ RSpec.describe Article, type: :request do
       it { expect(response).to have_http_status 200 }
       it 'show article' do
         expect(json['data'].length).to eq 2
-        expect(json['data'][1]['attributes'].keys).to contain_exactly(*%w[description name])
+        expect(json['data'][1]['attributes'].keys).to contain_exactly(*%w[description name avatar])
       end
     end
 

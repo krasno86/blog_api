@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 
-gem 'rails', '~> 5.1.6'
+gem 'rails', '~> 5.2.2'
 gem 'pg'
 gem 'puma', '~> 3.7'
 gem 'rack-cors', :require => 'rack/cors'
