@@ -6,12 +6,7 @@ class Api::V1::ApplicationController < ActionController::API
   respond_to :json
 
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :skip_session
-
-  def skip_session
-    request.session_options[:skip] = true
-  end
-
+  
   protected
 
   def configure_permitted_parameters
