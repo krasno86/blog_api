@@ -8,7 +8,7 @@ end
 
 gem 'rails', '~> 5.2.2'
 gem 'pg'
-gem 'puma', '~> 3.7'
+gem 'puma', '~> 4.3'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'devise_token_auth'
 gem 'fast_jsonapi'
